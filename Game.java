@@ -84,4 +84,12 @@ public class Game {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public int compareNames(Game g){
+        return title.compareTo(g.getTitle());
+    }
+
+    public int compareYears(Game g){
+        return releaseYear - g.getReleaseYear();
+    }
 }
