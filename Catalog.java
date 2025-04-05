@@ -10,11 +10,19 @@ public class Catalog {
 
     // Methods (empty for now)
     public void addGame(Game game) {
-        // Method implementation goes here
+        gameList.add(game);
     }
 
     public void deleteGame(int id) {
-        // Method implementation goes here
+        for(Game g:gameList){
+            if(g.getId()==id){
+                gameList.remove(g);
+            }
+        }
+    }
+    
+    public void deleteGame(Game game) {
+        gameList.remove(game);
     }
 
     public void editGame(Game game) {
@@ -34,7 +42,18 @@ public class Catalog {
     }
 
     public void sortGames(String criteria) {
-        // Method implementation goes here
+        switch (criteria){
+            case "alphabetical":
+                gameList.sort(Game::compareNames);
+                break;
+
+            case "chronological":
+                gameList.sort(Game::compareYears);
+                break;
+
+            default:
+                gameList.sort(Game::compareNames);
+        }
     }
 
     public void helpMenu() {
