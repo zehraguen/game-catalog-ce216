@@ -2,7 +2,7 @@
 import java.util.ArrayList;
 
 public class Catalog {
-    private ArrayList<Game> gamelist;
+    private ArrayList<Game> gameList;
 
     public static void main(String[] args) {
         
