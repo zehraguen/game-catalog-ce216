@@ -13,7 +13,6 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.ListView;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
