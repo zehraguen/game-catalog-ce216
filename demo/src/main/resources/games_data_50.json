@@ -1,0 +1,754 @@
+[
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/80/header.jpg?t=1729702001",
+        "genre": ["Action"],
+        "developer": ["Valve"],
+        "playTime": 993,
+        "id": 80,
+        "title": "Counter-Strike: Condition Zero",
+        "releaseYear": 2004,
+        "platform": [
+            "windows",
+            "mac",
+            "linux"
+        ]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/6880/header.jpg?t=1728395147",
+        "genre": ["Action"],
+        "developer": ["Avalanche Studios"],
+        "playTime": 998,
+        "id": 6880,
+        "title": "Just Cause",
+        "releaseYear": 2007,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/9010/header.jpg?t=1664380265",
+        "genre": ["Action"],
+        "developer": ["Gray Matter Studios"],
+        "playTime": 634,
+        "id": 9010,
+        "title": "Return to Castle Wolfenstein",
+        "releaseYear": 2007,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/12100/header.jpg?t=1634144440",
+        "genre": ["Action"],
+        "developer": ["Rockstar Games"],
+        "playTime": 325,
+        "id": 12100,
+        "title": "Grand Theft Auto III",
+        "releaseYear": 2008,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/17390/header.jpg?t=1642702281",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Casual",
+            "RPG",
+            "Simulation",
+            "Strategy"
+        ],
+        "developer": ["Maxis™"],
+        "playTime": 1151,
+        "id": 17390,
+        "title": "SPORE™",
+        "releaseYear": 2008,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/65800/header.jpg?t=1738878772",
+        "genre": [
+            "Action",
+            "Indie",
+            "RPG",
+            "Strategy"
+        ],
+        "developer": ["Chromatic Games"],
+        "playTime": 1805,
+        "id": 65800,
+        "title": "Dungeon Defenders",
+        "releaseYear": 2011,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/113200/header.jpg?t=1643480517",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Indie",
+            "RPG"
+        ],
+        "developer": [
+            "Edmund McMillen",
+            "Florian Himsl"
+        ],
+        "playTime": 1647,
+        "id": 113200,
+        "title": "The Binding of Isaac",
+        "releaseYear": 2011,
+        "platform": [
+            "windows",
+            "mac"
+        ]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/96000/header.jpg?t=1631292999",
+        "genre": [
+            "Adventure",
+            "Casual",
+            "Indie"
+        ],
+        "developer": ["Colibri Games"],
+        "playTime": 299,
+        "id": 96000,
+        "title": "The Tiny Bang Story",
+        "releaseYear": 2011,
+        "platform": [
+            "windows",
+            "mac",
+            "linux"
+        ]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/204100/header.jpg?t=1718391374",
+        "genre": ["Action"],
+        "developer": ["Rockstar Studios"],
+        "playTime": 908,
+        "id": 204100,
+        "title": "Max Payne 3",
+        "releaseYear": 2012,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/249130/header.jpg?t=1729802640",
+        "genre": [
+            "Action",
+            "Adventure"
+        ],
+        "developer": ["Traveller's Tales"],
+        "playTime": 3010,
+        "id": 249130,
+        "title": "LEGO® Marvel™ Super Heroes",
+        "releaseYear": 2013,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/109600/header.jpg?t=1732035666",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Massively Multiplayer",
+            "RPG",
+            "Free To Play"
+        ],
+        "developer": ["Cryptic Studios"],
+        "playTime": 1485,
+        "id": 109600,
+        "title": "Neverwinter",
+        "releaseYear": 2013,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238320/header.jpg?t=1666817106",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Indie"
+        ],
+        "developer": ["Red Barrels"],
+        "playTime": 362,
+        "id": 238320,
+        "title": "Outlast",
+        "releaseYear": 2013,
+        "platform": [
+            "windows",
+            "mac",
+            "linux"
+        ]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/261640/header.jpg?t=1728608128",
+        "genre": [
+            "Action",
+            "RPG"
+        ],
+        "developer": [
+            "2K Australia",
+            "Gearbox Software",
+            "Aspyr (Linux)"
+        ],
+        "playTime": 1553,
+        "id": 261640,
+        "title": "Borderlands: The Pre-Sequel",
+        "releaseYear": 2014,
+        "platform": [
+            "windows",
+            "mac",
+            "linux"
+        ]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/274940/header.jpg?t=1726299853",
+        "genre": [
+            "Action",
+            "Indie"
+        ],
+        "developer": ["Digital Confectioners"],
+        "playTime": 851,
+        "id": 274940,
+        "title": "Depth",
+        "releaseYear": 2014,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/289130/header.jpg?t=1728045983",
+        "genre": [
+            "RPG",
+            "Strategy"
+        ],
+        "developer": ["AMPLITUDE Studios"],
+        "playTime": 1138,
+        "id": 289130,
+        "title": "ENDLESS™ Legend",
+        "releaseYear": 2014,
+        "platform": [
+            "windows",
+            "mac"
+        ]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/242640/header.jpg?t=1739798048",
+        "genre": ["Action"],
+        "developer": ["Cyanide Studio"],
+        "playTime": 301,
+        "id": 242640,
+        "title": "Styx: Master of Shadows",
+        "releaseYear": 2014,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/242640/header.jpg?t=1739798048",
+        "genre": ["Action"],
+        "developer": ["Cyanide Studio"],
+        "playTime": 301,
+        "id": 242640,
+        "title": "Styx: Master of Shadows",
+        "releaseYear": 2014,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/339610/header.jpg?t=1743648159",
+        "genre": [
+            "Action",
+            "Casual",
+            "Massively Multiplayer",
+            "Sports",
+            "Free To Play"
+        ],
+        "developer": ["JOYCITY"],
+        "playTime": 1624,
+        "id": 339610,
+        "title": "Freestyle 2: Street Basketball",
+        "releaseYear": 2015,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/242860/header.jpg?t=1739289304",
+        "genre": [
+            "Action",
+            "Indie",
+            "Massively Multiplayer",
+            "Simulation",
+            "Strategy"
+        ],
+        "developer": ["BlackMill Games"],
+        "playTime": 903,
+        "id": 242860,
+        "title": "Verdun",
+        "releaseYear": 2015,
+        "platform": [
+            "windows",
+            "mac",
+            "linux"
+        ]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/232090/header.jpg?t=1729011001",
+        "genre": ["Action"],
+        "developer": ["Tripwire Interactive"],
+        "playTime": 5001,
+        "id": 232090,
+        "title": "Killing Floor 2",
+        "releaseYear": 2016,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/364360/header.jpg?t=1668768531",
+        "genre": [
+            "Action",
+            "Strategy"
+        ],
+        "developer": [
+            "CREATIVE ASSEMBLY",
+            "Feral Interactive (Linux)",
+            "Feral Interactive (Mac)"
+        ],
+        "playTime": 3901,
+        "id": 364360,
+        "title": "Total War: WARHAMMER",
+        "releaseYear": 2016,
+        "platform": [
+            "windows",
+            "mac",
+            "linux"
+        ]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/355180/header.jpg?t=1727353650",
+        "genre": [
+            "Action",
+            "Free To Play"
+        ],
+        "developer": ["Raptor Byte"],
+        "playTime": 136,
+        "id": 355180,
+        "title": "Codename CURE",
+        "releaseYear": 2017,
+        "platform": [
+            "windows",
+            "linux"
+        ]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/435150/header.jpg?t=1725653917",
+        "genre": [
+            "Adventure",
+            "RPG",
+            "Strategy"
+        ],
+        "developer": ["Larian Studios"],
+        "playTime": 4777,
+        "id": 435150,
+        "title": "Divinity: Original Sin 2 - Definitive Edition",
+        "releaseYear": 2017,
+        "platform": [
+            "windows",
+            "mac"
+        ]
+    },
+    {
+        "image": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0b/The_Legend_of_Zelda_Breath_of_the_Wild.jpg/220px-The_Legend_of_Zelda_Breath_of_the_Wild.jpg",
+        "genre": [
+            "Action-adventure",
+            "Open world"
+        ],
+        "developer": ["Nintendo EPD"],
+        "playTime": 120,
+        "id": 1001,
+        "title": "The Legend of Zelda: Breath of the Wild",
+        "releaseYear": 2017,
+        "platform": [
+            "Nintendo Switch",
+            "Wii U"
+        ]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/787860/header.jpg?t=1674664652",
+        "genre": ["Simulation"],
+        "developer": ["Giants Software"],
+        "playTime": 8670,
+        "id": 787860,
+        "title": "Farming Simulator 19",
+        "releaseYear": 2018,
+        "platform": [
+            "windows",
+            "mac"
+        ]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/568220/header.jpg?t=1636694188",
+        "genre": [
+            "Indie",
+            "Simulation"
+        ],
+        "developer": ["ProjectMoon"],
+        "playTime": 1221,
+        "id": 568220,
+        "title": "Lobotomy Corporation | Monster Management Simulation",
+        "releaseYear": 2018,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/841370/header.jpg?t=1639606986",
+        "genre": [
+            "Simulation",
+            "Sports"
+        ],
+        "developer": ["Visual Concepts"],
+        "playTime": 13485,
+        "id": 841370,
+        "title": "NBA 2K19",
+        "releaseYear": 2018,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/805550/header.jpg?t=1740392896",
+        "genre": [
+            "Racing",
+            "Simulation",
+            "Sports"
+        ],
+        "developer": ["Kunos Simulazioni"],
+        "playTime": 3292,
+        "id": 805550,
+        "title": "Assetto Corsa Competizione",
+        "releaseYear": 2019,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/823500/header.jpg?t=1581381377",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Indie",
+            "Simulation"
+        ],
+        "developer": ["Stress Level Zero"],
+        "playTime": 883,
+        "id": 823500,
+        "title": "BONEWORKS",
+        "releaseYear": 2019,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1046930/header.jpg?t=1649700104",
+        "genre": [
+            "Casual",
+            "Free To Play",
+            "Strategy"
+        ],
+        "developer": ["Valve"],
+        "playTime": 2349,
+        "id": 1046930,
+        "title": "Dota Underlords",
+        "releaseYear": 2019,
+        "platform": [
+            "windows",
+            "mac",
+            "linux"
+        ]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/815370/header.jpg?t=1743755816",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Indie",
+            "Simulation"
+        ],
+        "developer": ["Creepy Jar"],
+        "playTime": 1086,
+        "id": 815370,
+        "title": "Green Hell",
+        "releaseYear": 2019,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/492720/40c7bd74f93cb1b1caf107beeded56554c77a670/header_alt_assets_12.jpg?t=1741270039",
+        "genre": [
+            "Simulation",
+            "Strategy"
+        ],
+        "developer": [
+            "Limbic Entertainment",
+            "Realmforge Studios"
+        ],
+        "playTime": 2092,
+        "id": 492720,
+        "title": "Tropico 6",
+        "releaseYear": 2019,
+        "platform": [
+            "windows",
+            "mac",
+            "linux"
+        ]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1301720/header.jpg?t=1733062817",
+        "genre": [
+            "Adventure",
+            "Casual",
+            "Free To Play"
+        ],
+        "developer": ["Bitbeast Games"],
+        "playTime": 102,
+        "id": 1301720,
+        "title": "Escape Room - Der kranke Kollege",
+        "releaseYear": 2020,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1263850/header.jpg?t=1671725363",
+        "genre": [
+            "Simulation",
+            "Sports"
+        ],
+        "developer": ["Sports Interactive"],
+        "playTime": 28347,
+        "id": 1263850,
+        "title": "Football Manager 2021",
+        "releaseYear": 2020,
+        "platform": [
+            "windows",
+            "mac"
+        ]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1128810/header.jpg?t=1743556850",
+        "genre": [
+            "Casual",
+            "Strategy",
+            "Free To Play"
+        ],
+        "developer": ["SMG Studio"],
+        "playTime": 592,
+        "id": 1128810,
+        "title": "RISK: Global Domination",
+        "releaseYear": 2020,
+        "platform": [
+            "windows",
+            "mac"
+        ]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1222670/header_alt_assets_7.jpg?t=1740506448",
+        "genre": [
+            "Adventure",
+            "Casual",
+            "Simulation",
+            "Free To Play"
+        ],
+        "developer": ["Maxis"],
+        "playTime": 1511,
+        "id": 1222670,
+        "title": "The Sims™ 4",
+        "releaseYear": 2020,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1190000/header.jpg?t=1742814596",
+        "genre": [
+            "Racing",
+            "Simulation"
+        ],
+        "developer": ["Red Dot Games"],
+        "playTime": 2279,
+        "id": 1190000,
+        "title": "Car Mechanic Simulator 2021",
+        "releaseYear": 2021,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1343370/header.jpg?t=1702553709",
+        "genre": [
+            "Adventure",
+            "Massively Multiplayer",
+            "RPG",
+            "Free To Play"
+        ],
+        "developer": ["Jagex Ltd"],
+        "playTime": 4342,
+        "id": 1343370,
+        "title": "Old School RuneScape",
+        "releaseYear": 2021,
+        "platform": [
+            "windows",
+            "mac"
+        ]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1509960/header.jpg?t=1740033204",
+        "genre": [
+            "Action",
+            "Casual",
+            "Indie"
+        ],
+        "developer": ["TECOPARK"],
+        "playTime": 171,
+        "id": 1509960,
+        "title": "PICO PARK",
+        "releaseYear": 2021,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1755910/header.jpg?t=1739493760",
+        "genre": [
+            "Action",
+            "Free To Play"
+        ],
+        "developer": ["CAPCOM Co., Ltd."],
+        "playTime": 325,
+        "id": 1755910,
+        "title": "Capcom Arcade 2nd Stadium",
+        "releaseYear": 2022,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2096600/header.jpg?t=1709652029",
+        "genre": ["Action"],
+        "developer": [
+            "Crytek",
+            "Saber Interactive"
+        ],
+        "playTime": 546,
+        "id": 2096600,
+        "title": "Crysis 2 Remastered",
+        "releaseYear": 2022,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1290000/header.jpg?t=1741886898",
+        "genre": [
+            "Casual",
+            "Indie",
+            "Simulation"
+        ],
+        "developer": ["FuturLab"],
+        "playTime": 2093,
+        "id": 1290000,
+        "title": "PowerWash Simulator",
+        "releaseYear": 2022,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1966720/header.jpg?t=1742986399",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Indie",
+            "Early Access"
+        ],
+        "developer": ["Zeekerss"],
+        "playTime": 1398,
+        "id": 1966720,
+        "title": "Lethal Company",
+        "releaseYear": 2023,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/251570/header.jpg?t=1736194886",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Indie",
+            "RPG",
+            "Simulation",
+            "Strategy"
+        ],
+        "developer": ["The Fun Pimps"],
+        "playTime": 5611,
+        "id": 251570,
+        "title": "7 Days to Die",
+        "releaseYear": 2024,
+        "platform": [
+            "windows",
+            "mac",
+            "linux"
+        ]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg?t=1742561528",
+        "genre": [
+            "Action",
+            "Adventure",
+            "RPG"
+        ],
+        "developer": ["Game Science"],
+        "playTime": 3246,
+        "id": 2358720,
+        "title": "Black Myth: Wukong",
+        "releaseYear": 2024,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2835570/header.jpg?t=1740261372",
+        "genre": [
+            "Action",
+            "Indie",
+            "Simulation"
+        ],
+        "developer": ["Mike Klubnika"],
+        "playTime": 387,
+        "id": 2835570,
+        "title": "Buckshot Roulette",
+        "releaseYear": 2024,
+        "platform": [
+            "windows",
+            "linux"
+        ]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2054970/header.jpg?t=1732148252",
+        "genre": [
+            "Action",
+            "RPG"
+        ],
+        "developer": ["CAPCOM Co., Ltd."],
+        "playTime": 2690,
+        "id": 2054970,
+        "title": "Dragon's Dogma 2",
+        "releaseYear": 2024,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/304390/header.jpg?t=1741872838",
+        "genre": ["Action"],
+        "developer": [
+            "Ubisoft Montreal",
+            "Ubisoft Quebec",
+            "Ubisoft Toronto",
+            "Blue Byte"
+        ],
+        "playTime": 2928,
+        "id": 304390,
+        "title": "FOR HONOR™",
+        "releaseYear": 2024,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2694490/ba1822255f183f11171b04c6b83863e16e2acbd0/header_alt_assets_1.jpg?t=1743801362",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Massively Multiplayer",
+            "RPG",
+            "Early Access"
+        ],
+        "developer": ["Grinding Gear Games"],
+        "playTime": 6691,
+        "id": 2694490,
+        "title": "Path of Exile 2",
+        "releaseYear": 2024,
+        "platform": ["windows"]
+    },
+    {
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2670630/header.jpg?t=1730737834",
+        "genre": [
+            "Casual",
+            "Indie",
+            "Simulation",
+            "Early Access"
+        ],
+        "developer": ["Nokta Games"],
+        "playTime": 1382,
+        "id": 2670630,
+        "title": "Supermarket Simulator",
+        "releaseYear": 2024,
+        "platform": ["windows"]
+    }
+]
