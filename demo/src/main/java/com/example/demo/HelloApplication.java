@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,6 +19,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class HelloApplication extends Application {
+    private final Catalog catalog = new Catalog();
+    private final ListView<String> gameView = new ListView<>();
+
     @Override
     public void start(Stage stage) throws IOException {
 
@@ -28,7 +32,7 @@ public class HelloApplication extends Application {
         Menu fileMenu = new Menu(("File"));
         fileMenu.getItems().add(new MenuItem("Import"));
         fileMenu.getItems().add(new MenuItem("Export"));
-        fileMenu.getItems().get(0).setOnAction(e -> System.out.println());
+        fileMenu.getItems().get(0).setOnAction(e -> importGames());
         fileMenu.getItems().get(1).setOnAction(e -> System.out.println());
 
         Menu filterGenre = new Menu("Genre");
@@ -55,7 +59,19 @@ public class HelloApplication extends Application {
         ComboBox<String> sortBox = new ComboBox<>();
         sortBox.getItems().addAll("Alphabetical", "Release year", "Play time");
         sortBox.setValue("Alphabetical");
-        sortBox.setOnAction(e -> System.out.println());
+        //sortBox.setOnAction(e -> sortGames("alphabetical"));
+        sortBox.setOnAction(e -> {
+            String selected = sortBox.getValue();
+            String criteria = switch (selected) {
+                case "Alphabetical" -> "alphabetical";
+                case "Release year" -> "chronological";
+                case "Play time" -> "playtime";
+                default -> "alphabetical";
+            };
+
+            catalog.sortGames(criteria);
+            gameView.setItems(getGameTitles()); // refresh the ListView
+        });
 
         TextField searchField = new TextField();
         searchField.setPromptText("search");
@@ -78,7 +94,6 @@ public class HelloApplication extends Application {
 
         //-------------------------------------------------
 
-        ListView gameView = new ListView();
         VBox.setVgrow(gameView, Priority.ALWAYS);
 
         GridPane[] games = new GridPane[9];
@@ -126,12 +141,30 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
-
     }
 
     public static void main(String[] args) {
         launch();
     }
+
+    public ObservableList<String> getGameTitles() {
+        ArrayList<String> titles = new ArrayList<>();
+        for (Game game : catalog.getGameList()) {
+            titles.add(game.getTitle());
+        }
+        return javafx.collections.FXCollections.observableArrayList(titles);
+    }
+
+    public void importGames() {
+        catalog.importJson("src/main/resources/games_data.json");
+        gameView.setItems(getGameTitles());
+    }
+
+    public void sortGames(String criteria) {
+        catalog.sortGames(criteria);
+        //gameView.setItems(getGameTitles());
+    }
+
 
     public static void helpMenu() {
         System.out.println("This is the help menu.");

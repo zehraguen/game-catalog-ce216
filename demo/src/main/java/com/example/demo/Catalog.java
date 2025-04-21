@@ -8,7 +8,13 @@ import org.json.*;
 public class Catalog {
     private ArrayList<Game> gameList;
 
+    public Catalog() {
+        gameList = new ArrayList<>();
+    }
 
+    public ArrayList<Game> getGameList() {
+        return gameList;
+    }
 
     // Methods (empty for now)
     public void addGame(Game game) {
@@ -111,6 +117,10 @@ public class Catalog {
 
             case "chronological":
                 gameList.sort(Game::compareYears);
+                break;
+
+            case "playtime":
+                gameList.sort(Game::comparePlayTime);
                 break;
 
             default:
