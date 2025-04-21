@@ -11,8 +11,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.Year;
 import java.util.ArrayList;
@@ -32,8 +34,8 @@ public class HelloApplication extends Application {
         Menu fileMenu = new Menu(("File"));
         fileMenu.getItems().add(new MenuItem("Import"));
         fileMenu.getItems().add(new MenuItem("Export"));
-        fileMenu.getItems().get(0).setOnAction(e -> importGames());
-        fileMenu.getItems().get(1).setOnAction(e -> System.out.println());
+        fileMenu.getItems().get(0).setOnAction(e -> handleImportFromDirectory());
+        fileMenu.getItems().get(1).setOnAction(e -> exportGames());
 
         Menu filterGenre = new Menu("Genre");
         filterGenre.getItems().add(new MenuItem(""));
@@ -159,6 +161,33 @@ public class HelloApplication extends Application {
         catalog.importJson("src/main/resources/games_data.json");
         gameView.setItems(getGameTitles());
     }
+
+    public void handleImportFromDirectory() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Import Game Data");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON Files", "*.json"));
+
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            catalog.importJson(file.getAbsolutePath());
+            gameView.setItems(getGameTitles());
+        }
+    }
+
+    public void exportGames() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Export Game Data");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON Files", "*.json"));
+        fileChooser.setInitialFileName("games_export.json");
+
+        File file = fileChooser.showSaveDialog(null);
+        if (file != null) {
+            catalog.exportJson(file.getAbsolutePath());
+            System.out.println("Exported to: " + file.getAbsolutePath());
+        }
+    }
+
+
 
     public void sortGames(String criteria) {
         catalog.sortGames(criteria);
