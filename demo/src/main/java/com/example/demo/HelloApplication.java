@@ -8,6 +8,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -145,6 +147,10 @@ public class HelloApplication extends Application {
         VBox layout = new VBox(10);
         layout.setPadding(new javafx.geometry.Insets(15));
 
+        ImageView imageView = new ImageView(new Image(game.getImage(), true));
+        imageView.setFitWidth(300);
+        imageView.setPreserveRatio(true);
+
         Label title = new Label("Title: " + game.getTitle());
         Label developer = new Label("Developer: " + String.join(", ", game.getDeveloper()));
         Label year = new Label("Release Year: " + game.getReleaseYear());
@@ -152,9 +158,9 @@ public class HelloApplication extends Application {
         Label platform = new Label("Platform: " + String.join(", ", game.getPlatform()));
         Label playtime = new Label("Playtime: " + game.getPlayTime() + " hours");
 
-        layout.getChildren().addAll(title, developer, year, genre, platform, playtime);
+        layout.getChildren().addAll(imageView, title, developer, year, genre, platform, playtime);
 
-        Scene scene = new Scene(layout, 300, 250);
+        Scene scene = new Scene(layout, 400, 500);
         detailStage.setScene(scene);
         detailStage.show();
     }
