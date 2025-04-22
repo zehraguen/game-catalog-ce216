@@ -1,3 +1,5 @@
+package com.example.baban;
+
 import java.util.ArrayList;
 
 public class LocalizedGame extends Game {

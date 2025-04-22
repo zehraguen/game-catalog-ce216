@@ -1,16 +1,18 @@
+package com.example.baban;
+
 import java.util.ArrayList;
 
 public class Game {
     private String title;
-    private ArrayList <String> developer;
+    private ArrayList<String> developer;
     private int releaseYear;
-    private ArrayList <String> genre;
+    private ArrayList<String> genre;
     private int id;
-    private ArrayList <String> platform;
+    private ArrayList<String> platform;
     private double playTime;
     private String image;
 
-    public Game(String title, ArrayList<String> developer, int releaseYear, ArrayList<String> genre, int id, ArrayList <String> platform, double playTime, String image) {
+    public Game(String title, ArrayList<String> developer, int releaseYear, ArrayList<String> genre, int id, ArrayList<String> platform, double playTime, String image) {
         this.title = title;
         this.developer = developer;
         this.releaseYear = releaseYear;
@@ -85,11 +87,16 @@ public class Game {
         this.title = title;
     }
 
-    public int compareNames(Game g){
+    public int compareNames(Game g) {
         return title.compareTo(g.getTitle());
     }
 
-    public int compareYears(Game g){
+    public int compareYears(Game g) {
         return releaseYear - g.getReleaseYear();
     }
+
+    public int comparePlayTime(Game g) {
+        return Double.compare(g.getPlayTime(), playTime);
+    }
+
 }
