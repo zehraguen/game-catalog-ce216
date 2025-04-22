@@ -97,7 +97,10 @@ public class HelloApplication extends Application {
 
         Label filterLabel = new Label("None");
         Button filterButton = new Button("   Filters:  ");
-        filterButton.setOnAction(e -> filterLabel.setText(filterLabel.getText() + " criteria"));
+        filterButton.setOnAction(e -> {
+            FilterWindow fw = new FilterWindow();
+            fw.show();
+        });
 
         HBox filterBox = new HBox(8);
         filterBox.setAlignment(Pos.CENTER_LEFT);
