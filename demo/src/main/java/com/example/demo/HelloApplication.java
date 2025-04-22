@@ -97,9 +97,13 @@ public class HelloApplication extends Application {
 
         Label filterLabel = new Label("None");
         Button filterButton = new Button("   Filters:  ");
+        
+        ArrayList<String> selectedFilters=new ArrayList<>();
+
         filterButton.setOnAction(e -> {
-            FilterWindow fw = new FilterWindow();
+            FilterWindow fw = new FilterWindow(selectedFilters, filterLabel);
             fw.show();
+
         });
 
         HBox filterBox = new HBox(8);
