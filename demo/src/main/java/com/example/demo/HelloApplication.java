@@ -96,6 +96,28 @@ public class HelloApplication extends Application {
 
         //-------------------------------------------------
 
+<<<<<<< Updated upstream
+=======
+        Label filterLabel = new Label("None");
+        Button filterButton = new Button("   Filters:  ");
+
+        ArrayList<String> selectedFilters=new ArrayList<>();
+
+        filterButton.setOnAction(e -> {
+            FilterWindow fw = new FilterWindow(selectedFilters, filterLabel);
+            fw.show();
+
+        });
+
+        HBox filterBox = new HBox(8);
+        filterBox.setAlignment(Pos.CENTER_LEFT);
+        filterBox.getChildren().addAll(filterButton, filterLabel);
+
+        VBox.setMargin(filterBox, new Insets(8));
+        //-------------------------------------------------
+
+        ListView gameView = new ListView();
+>>>>>>> Stashed changes
         VBox.setVgrow(gameView, Priority.ALWAYS);
 
         GridPane[] games = new GridPane[9];
