@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -29,8 +30,8 @@ public class HelloApplication extends Application {
         Menu fileMenu = new Menu("File");
         MenuItem importItem = new MenuItem("Import");
         MenuItem exportItem = new MenuItem("Export");
-        importItem.setOnAction(e -> handleImportFromDirectory());
-        exportItem.setOnAction(e -> exportGames());
+        importItem.setOnAction(e -> handleImportFromDirectory(stage));
+        exportItem.setOnAction(e -> exportGames(stage));
         fileMenu.getItems().addAll(importItem, exportItem);
 
         Menu filterMenu = new Menu("Filter");
@@ -83,6 +84,17 @@ public class HelloApplication extends Application {
         VBox.setVgrow(gameTable, Priority.ALWAYS);
         mainLayOut.getChildren().add(gameTable);
 
+        gameTable.setRowFactory(tv -> {
+            TableRow<Game> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getClickCount() == 2) {
+                    Game clickedGame = row.getItem();
+                    showGameDetails(clickedGame);
+                }
+            });
+            return row;
+        });
+
         HBox end = new HBox(8);
         end.setAlignment(javafx.geometry.Pos.BOTTOM_RIGHT);
         end.getChildren().addAll(new Button("prev"), new Button("next"));
@@ -99,26 +111,51 @@ public class HelloApplication extends Application {
         launch();
     }
 
-    public void handleImportFromDirectory() {
+    public void handleImportFromDirectory(Stage stage) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Import Game Data");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON Files", "*.json"));
-        File file = fileChooser.showOpenDialog(null);
-        if (file != null) {
-            catalog.importJson(file.getAbsolutePath());
-            gameTable.setItems(FXCollections.observableArrayList(catalog.getGameList()));
-        }
+        Platform.runLater(() -> {
+            File file = fileChooser.showOpenDialog(stage);
+            if (file != null) {
+                catalog.importJson(file.getAbsolutePath());
+                gameTable.setItems(FXCollections.observableArrayList(catalog.getGameList()));
+            }
+        });
     }
 
-    public void exportGames() {
+    public void exportGames(Stage stage) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Export Game Data");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON Files", "*.json"));
         fileChooser.setInitialFileName("games_export.json");
-        File file = fileChooser.showSaveDialog(null);
-        if (file != null) {
-            catalog.exportJson(file.getAbsolutePath());
-            System.out.println("Exported to: " + file.getAbsolutePath());
-        }
+        Platform.runLater(() -> {
+            File file = fileChooser.showSaveDialog(stage);
+            if (file != null) {
+                catalog.exportJson(file.getAbsolutePath());
+                System.out.println("Exported to: " + file.getAbsolutePath());
+            }
+        });
+    }
+
+    private void showGameDetails(Game game) {
+        Stage detailStage = new Stage();
+        detailStage.setTitle(game.getTitle());
+
+        VBox layout = new VBox(10);
+        layout.setPadding(new javafx.geometry.Insets(15));
+
+        Label title = new Label("Title: " + game.getTitle());
+        Label developer = new Label("Developer: " + String.join(", ", game.getDeveloper()));
+        Label year = new Label("Release Year: " + game.getReleaseYear());
+        Label genre = new Label("Genre: " + String.join(", ", game.getGenre()));
+        Label platform = new Label("Platform: " + String.join(", ", game.getPlatform()));
+        Label playtime = new Label("Playtime: " + game.getPlayTime() + " hours");
+
+        layout.getChildren().addAll(title, developer, year, genre, platform, playtime);
+
+        Scene scene = new Scene(layout, 300, 250);
+        detailStage.setScene(scene);
+        detailStage.show();
     }
 }
