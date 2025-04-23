@@ -234,7 +234,7 @@ public class HelloApplication extends Application {
         VBox filterBox = new VBox(10);
         VBox filterBox2=new VBox(10);
 
-        String[] filters={"RPG","Action","Co-op","Simulation","Strategy","Horror"};
+        String[] filters={"Simulation", "Strategy", "Sports", "RPG", "Racing", "Puzzle", "Indie"," Casual", "Adventure","Action"};
 
 
         for (String f : filters) {
