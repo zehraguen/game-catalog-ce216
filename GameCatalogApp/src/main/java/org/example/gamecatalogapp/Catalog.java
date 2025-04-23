@@ -1,9 +1,8 @@
 package org.example.gamecatalogapp;
 
-import org.json.*;
-
 import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.util.*;
+import org.json.*;
 
 public class Catalog {
     private ArrayList<Game> gameList;
@@ -36,6 +35,7 @@ public class Catalog {
     
     public void deleteGame(Game game) {
         gameList.remove(game);
+        specificGameList.remove(game);
     }
 
     public void editGame(Game game) {
@@ -196,13 +196,14 @@ public class Catalog {
         specificGameList.clear();
 
         for (Game game : gameList) {
-            if (game.getTitle().toLowerCase().contains(searchText.toLowerCase())) {
+            if (game.getTitle().toLowerCase().startsWith(searchText.toLowerCase())) {
                 specificGameList.add(game);
             }
         }
-    }
-
-    public void helpMenu() {
-        // Method implementation goes here
+        for (Game game : gameList) {
+            if (game.getTitle().toLowerCase().contains(searchText.toLowerCase())&&!game.getTitle().toLowerCase().startsWith(searchText.toLowerCase())) {
+                specificGameList.add(game);
+            }
+        }
     }
 }

@@ -17,7 +17,6 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,13 +31,21 @@ public class HelloApplication extends Application {
 
         //-------------------------------------------------
         Menu fileMenu = new Menu("File");
+        Menu helpMenu = new Menu("Help");
+        MenuItem help = new MenuItem("Instructions");
+        helpMenu.getItems().add(help);
+        help.setOnAction(e->showHelpMenu());
+        MenuItem contact = new MenuItem("Contact");
+        helpMenu.getItems().add(contact);
+        contact.setOnAction(e -> showContact());
         MenuItem importItem = new MenuItem("Import");
         MenuItem exportItem = new MenuItem("Export");
         importItem.setOnAction(e -> handleImportFromDirectory(stage));
         exportItem.setOnAction(e -> exportGames(stage));
         fileMenu.getItems().addAll(importItem, exportItem);
 
-        MenuBar menuBar = new MenuBar(fileMenu, new Menu("Help"));
+        MenuBar menuBar = new MenuBar(fileMenu, helpMenu);
+
         mainLayOut.getChildren().add(menuBar);
 
         Label filterLabel = new Label("None");
@@ -138,6 +145,9 @@ public class HelloApplication extends Application {
         VBox.setMargin(end, new javafx.geometry.Insets(8));
         mainLayOut.getChildren().add(end);
 
+        catalog.importJson("src/main/resources/games_data.json");
+        gameTable.setItems(FXCollections.observableArrayList(catalog.getSpecificGameList()));
+
         Scene scene = new Scene(mainLayOut, 600, 450);
         stage.setTitle("Game Catalog");
         stage.setScene(scene);
@@ -182,6 +192,15 @@ public class HelloApplication extends Application {
         VBox layout = new VBox(10);
         layout.setPadding(new javafx.geometry.Insets(15));
 
+        HBox deleteHBox = new HBox();
+        Button deleteButton = new Button("Delete Game");
+        deleteButton.setOnAction(e->{
+            catalog.deleteGame(game);
+            gameTable.setItems(FXCollections.observableArrayList(catalog.getGameList()));
+        });
+        deleteHBox.getChildren().add(deleteButton);
+        deleteHBox.setAlignment(Pos.BOTTOM_RIGHT);
+
         ImageView imageView = new ImageView(new Image(game.getImage(), true));
         imageView.setFitWidth(300);
         imageView.setPreserveRatio(true);
@@ -193,7 +212,7 @@ public class HelloApplication extends Application {
         Label platform = new Label("Platform: " + String.join(", ", game.getPlatform()));
         Label playtime = new Label("Playtime: " + game.getPlayTime() + " hours");
 
-        layout.getChildren().addAll(imageView, title, developer, year, genre, platform, playtime);
+        layout.getChildren().addAll(imageView, title, developer, year, genre, platform, playtime,deleteHBox);
 
         Scene scene = new Scene(layout, 400, 460);
         detailStage.setScene(scene);
@@ -282,9 +301,9 @@ public class HelloApplication extends Application {
 
         GridPane gp=new GridPane();
         Label genre=new Label("GENRES");
-        Label relaseYear=new Label("RELASE YEAR");
+        Label releaseYear=new Label("RELEASE YEAR");
         gp.add(genre,0,0); gp.add(scrollPaneForGenre,0,1);
-        gp.add(relaseYear,1,0); gp.add(scrollPaneForReleaseYear,1,1);
+        gp.add(releaseYear,1,0); gp.add(scrollPaneForReleaseYear,1,1);
         gp.setHgap(40);
         scrollPaneForGenre.setMinViewportWidth(100);
         gp.setAlignment(Pos.CENTER);
@@ -386,6 +405,8 @@ public class HelloApplication extends Application {
             }
         });
 
+
+
         root.getChildren().addAll(
                 new Label("Add a New Game"),
                 titleField,
@@ -404,5 +425,49 @@ public class HelloApplication extends Application {
         addStage.show();
     }
 
+    private void showHelpMenu(){
+        TextArea text = new TextArea();
+        text.setText("""
+                    Upload Games
+                        * Go to 'File' menu and then click the 'Import' button.
+                        * Select the file which contains game information in JSON format. Now all
+                          games are added to the catalog.
+                          
+                    Add Game
+                        * Click the 'Add Game' button.
+                        * Enter the attributes of the game you want to add.
+                        
+                    Delete Game
+                        * Click the 'Delete Game' button.
+                        
+                    Find Games
+                        * Type the full name or part of the game name in search bar and click
+                           'search' button.
+                        * Sort the games according to your preference.
+                        * Use filters to limit the games with genre or release year.
+                        * Click the game on the list to reach more information about the game.     
+                                      
+                    """);
+        text.setEditable(false);
+        Scene helpScene = new Scene(text,450, 300);
+        Stage stage1=new Stage();
+        stage1.setTitle("Help Menu");
+        stage1.setScene(helpScene);
+        stage1.show();
+    }
+
+    public void showContact(){
+        TextArea contactText = new TextArea();
+        contactText.setText("""
+                Ali BULBUL          +90 530 094 30 04
+                Ata Kemal INANC     +90 507 179 94 32
+                Duru Lila BEKOGLU   +90 534 528 07 99
+                Zehra GUN           +90 537 515 08 55""");
+        contactText.setEditable(false);
+        Scene contactScene = new Scene(contactText, 230, 80);
+        Stage stage2 = new Stage();
+        stage2.setScene(contactScene);
+        stage2.show();
+    }
 
 }
