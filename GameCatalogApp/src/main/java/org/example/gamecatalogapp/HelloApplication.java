@@ -6,15 +6,14 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
@@ -189,34 +188,130 @@ public class HelloApplication extends Application {
         Stage detailStage = new Stage();
         detailStage.setTitle(game.getTitle());
 
-        VBox layout = new VBox(10);
-        layout.setPadding(new javafx.geometry.Insets(15));
-
-        HBox deleteHBox = new HBox();
-        Button deleteButton = new Button("Delete Game");
-        deleteButton.setOnAction(e->{
-            catalog.deleteGame(game);
-            gameTable.setItems(FXCollections.observableArrayList(catalog.getGameList()));
-        });
-        deleteHBox.getChildren().add(deleteButton);
-        deleteHBox.setAlignment(Pos.BOTTOM_RIGHT);
+        VBox root = new VBox(15);
+        root.setPadding(new Insets(0));
+        root.setAlignment(Pos.TOP_CENTER);
+        root.setStyle("-fx-background-color: #2c7da0;");
 
         ImageView imageView = new ImageView(new Image(game.getImage(), true));
-        imageView.setFitWidth(300);
+        imageView.setFitWidth(500);
         imageView.setPreserveRatio(true);
+        imageView.setSmooth(true);
+        imageView.setStyle("""
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0, 3);
+""");
 
-        Label title = new Label("Title: " + game.getTitle());
-        Label developer = new Label("Developer: " + String.join(", ", game.getDeveloper()));
-        Label year = new Label("Release Year: " + game.getReleaseYear());
-        Label genre = new Label("Genre: " + String.join(", ", game.getGenre()));
-        Label platform = new Label("Platform: " + String.join(", ", game.getPlatform()));
-        Label playtime = new Label("Playtime: " + game.getPlayTime() + " hours");
+// infoBox
+        VBox rightInfoBox = new VBox(8);
+        rightInfoBox.setMaxWidth(Double.MAX_VALUE);
+        rightInfoBox.setMaxHeight(Double.MAX_VALUE);
+        rightInfoBox.setPadding(new Insets(20));
+        rightInfoBox.setPrefWidth(500);
+        rightInfoBox.setPrefHeight(1000);
+        rightInfoBox.setStyle("""
+    -fx-background-color: #f2f2f2;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 3);
+""");
 
-        layout.getChildren().addAll(imageView, title, developer, year, genre, platform, playtime,deleteHBox);
 
-        Scene scene = new Scene(layout, 400, 460);
+        VBox theBox=new VBox(0);
+        HBox genreBox = new HBox(5);
+        genreBox.setPadding(new Insets(5, 0, 5, 0));
+
+        for (String s : game.getGenre()) {
+            Label tag = new Label(s);
+            tag.setStyle("""
+        -fx-background-color: #e67e22;
+        -fx-text-fill: white;
+        -fx-padding: 4 10 4 10;
+        -fx-background-radius: 8;
+        -fx-font-size: 13;
+    """);
+            genreBox.getChildren().add(tag);
+        }
+        Label title=new Label(game.getTitle());
+        title.setStyle("""
+                -fx-text-fill: black;
+                 -fx-font-size: 23;
+                
+                 """);
+
+
+        theBox.getChildren().addAll(genreBox);
+
+        VBox leftInfoBox = new VBox(8);
+        leftInfoBox.setPrefWidth(500);
+        leftInfoBox.setPrefHeight(1000);
+        leftInfoBox.setMaxWidth(Double.MAX_VALUE);
+        leftInfoBox.setMaxHeight(Double.MAX_VALUE);
+        leftInfoBox.setPadding(new Insets(20));
+        leftInfoBox.setStyle("""
+    -fx-background-color: #f2f2f2;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 3);
+""");
+
+
+
+        HBox infoBoxes = new HBox(10);
+        infoBoxes.setPadding(new Insets(0));
+        infoBoxes.setPrefWidth(Double.MAX_VALUE);
+        infoBoxes.setPrefHeight(275);
+        infoBoxes.setPadding(new Insets(5, 5, 5, 10));
+
+
+        infoBoxes.getChildren().addAll(leftInfoBox, rightInfoBox);
+
+
+
+        Label developer = createLabel(" Developer: " + String.join(", ", game.getDeveloper()), 14, false);
+        Label year = createLabel(" Release Year: " + game.getReleaseYear(), 14, false);
+        Label platform = createLabel(" Platform: " + String.join(", ", game.getPlatform()), 14, false);
+        Label playtime = createLabel(" Playtime: " + game.getPlayTime() + " hrs", 14, false);
+
+        // EXplainin Area???
+        Label descriptionLabel = createLabel("Description:", 14, true);
+        Label descriptionText = createLabel("DESCRIPTION", 13, false);
+        descriptionText.setWrapText(true);
+
+        rightInfoBox.getChildren().addAll(developer, year, platform, playtime
+        );
+        Region spacer = new Region();
+        VBox.setVgrow(spacer, Priority.ALWAYS);
+
+        HBox buttonBox = new HBox();
+        buttonBox.setAlignment(Pos.BOTTOM_RIGHT);
+        Button deleteButton = new Button("Delete Game");
+        deleteButton.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-background-radius: 6;");
+        deleteButton.setOnAction(e -> {
+            catalog.deleteGame(game);
+            gameTable.setItems(FXCollections.observableArrayList(catalog.getGameList()));
+            detailStage.close();
+        });
+        buttonBox.getChildren().addAll(deleteButton);
+        rightInfoBox.getChildren().addAll(spacer,buttonBox);
+        leftInfoBox.getChildren().addAll(title,descriptionLabel,descriptionText);
+
+        VBox.setMargin(theBox, new Insets(0, 0, 0, 10));
+        VBox.setMargin(infoBoxes,new Insets(0,0,0,0));
+
+        root.getChildren().addAll(imageView,theBox, infoBoxes);
+
+
+
+        Scene scene = new Scene(root, 500, 600);
         detailStage.setScene(scene);
         detailStage.show();
+    }
+
+    private Label createLabel(String text, int fontSize, boolean bold) {
+        Label label = new Label(text);
+        label.setFont(Font.font(fontSize));
+        if (bold) {
+            label.setStyle("-fx-font-weight: bold;");
+        }
+        return label;
     }
 
     public void filterWindow(Label l) {
