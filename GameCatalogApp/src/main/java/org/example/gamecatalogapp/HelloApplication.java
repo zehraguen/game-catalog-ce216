@@ -314,20 +314,34 @@ public class HelloApplication extends Application {
         return label;
     }
 
+
+
+
+
+
+
+
     public void filterWindow(Label l) {
 
         Stage filterStage = new Stage();
         filterStage.setTitle("Filter Window");
 
-        ArrayList<String> list = new ArrayList<>();
         ArrayList<ToggleButton> toggleButtonsForGenre=new ArrayList<>();
         ArrayList<ToggleButton> toggleButtonsForReleaseYear=new ArrayList<>();
         ArrayList<String> selectedFilters = new ArrayList<>();
 
 
-        VBox root = new VBox(10);
-        VBox filterBox = new VBox(10);
-        VBox filterBox2=new VBox(10);
+        VBox root = new VBox(15);
+        root.setPadding(new Insets(15));
+
+        Label genreLabel = new Label("GENRES");
+        Label yearLabel = new Label("RELEASE YEARS");
+
+
+        FlowPane genrePane = new FlowPane();
+        genrePane.setHgap(10);
+        genrePane.setVgap(10);
+        genrePane.setPrefWrapLength(280);
 
         String[] filters={"Simulation", "Strategy", "Sports", "RPG", "Racing", "Puzzle", "Indie"," Casual", "Adventure","Action"};
 
@@ -335,13 +349,15 @@ public class HelloApplication extends Application {
         for (String f : filters) {
             ToggleButton btn = createSelectableButton(f);
             toggleButtonsForGenre.add(btn);
-            filterBox.getChildren().add(btn);
+            genrePane.getChildren().add(btn);
         }
 
 
-        ScrollPane scrollPaneForGenre = new ScrollPane(filterBox);
-        scrollPaneForGenre.setPrefWidth(150);
-        scrollPaneForGenre.setPrefHeight(200);
+        FlowPane yearPane = new FlowPane();
+        yearPane.setHgap(10);
+        yearPane.setVgap(10);
+        yearPane.setPrefWrapLength(280);
+
 
 
         String[] filters2={"1990-2000","2001-2005","2006-2010","2011-2020"};
@@ -349,13 +365,10 @@ public class HelloApplication extends Application {
         for (String f : filters2) {
             ToggleButton btn = createSelectableButton(f);
             toggleButtonsForReleaseYear.add(btn);
-            filterBox2.getChildren().add(btn);
+            yearPane.getChildren().add(btn);
         }
 
 
-        ScrollPane scrollPaneForReleaseYear = new ScrollPane(filterBox2);
-        scrollPaneForGenre.setPrefWidth(150);
-        scrollPaneForGenre.setPrefHeight(200);
 
 
 
@@ -394,21 +407,17 @@ public class HelloApplication extends Application {
 
         });
 
-        GridPane gp=new GridPane();
-        Label genre=new Label("GENRES");
-        Label releaseYear=new Label("RELEASE YEAR");
-        gp.add(genre,0,0); gp.add(scrollPaneForGenre,0,1);
-        gp.add(releaseYear,1,0); gp.add(scrollPaneForReleaseYear,1,1);
-        gp.setHgap(40);
-        scrollPaneForGenre.setMinViewportWidth(100);
-        gp.setAlignment(Pos.CENTER);
-        genre.setAlignment(Pos.CENTER);
 
-        list=selectedFilters;
 
-        root.getChildren().addAll(gp, applyButton);
 
-        Scene scene = new Scene(root, 300, 200);
+
+        root.getChildren().addAll(
+                genreLabel, genrePane,
+                yearLabel, yearPane,
+                applyButton
+        );
+
+        Scene scene = new Scene(root, 350, 400);
         filterStage.setScene(scene);
         filterStage.show();
     }
@@ -424,6 +433,14 @@ public class HelloApplication extends Application {
         });
         return button;
     }
+
+
+
+
+
+
+
+
 
 
 
