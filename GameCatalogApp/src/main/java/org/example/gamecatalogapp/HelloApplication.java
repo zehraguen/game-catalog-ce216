@@ -332,10 +332,24 @@ public class HelloApplication extends Application {
 
 
         VBox root = new VBox(15);
+        root.setStyle("-fx-background-color: #f2f2f2;");
         root.setPadding(new Insets(15));
 
         Label genreLabel = new Label("GENRES");
         Label yearLabel = new Label("RELEASE YEARS");
+
+        genreLabel.setStyle("""
+        -fx-font-size: 16px;
+        -fx-font-weight: bold;
+        -fx-underline: true;
+        -fx-text-fill: #37474F;
+        """);
+        yearLabel.setStyle("""
+         -fx-font-size: 16px;
+         -fx-font-weight: bold;
+         -fx-underline: true;
+         -fx-text-fill: #37474F;
+         """);
 
 
         FlowPane genrePane = new FlowPane();
@@ -349,6 +363,13 @@ public class HelloApplication extends Application {
         for (String f : filters) {
             ToggleButton btn = createSelectableButton(f);
             toggleButtonsForGenre.add(btn);
+            btn.setStyle("""
+        -fx-background-color: #e67e22;
+        -fx-text-fill: white;
+        -fx-padding: 4 10 4 10;
+        -fx-background-radius: 8;
+        -fx-font-size: 13;
+                    """);
             genrePane.getChildren().add(btn);
         }
 
@@ -365,6 +386,13 @@ public class HelloApplication extends Application {
         for (String f : filters2) {
             ToggleButton btn = createSelectableButton(f);
             toggleButtonsForReleaseYear.add(btn);
+            btn.setStyle("""
+        -fx-background-color: #e67e22;
+        -fx-text-fill: white;
+        -fx-padding: 4 10 4 10;
+        -fx-background-radius: 8;
+        -fx-font-size: 13;
+                    """);
             yearPane.getChildren().add(btn);
         }
 
@@ -375,6 +403,8 @@ public class HelloApplication extends Application {
 
 
         Button applyButton = new Button("Apply");
+        applyButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 6;");
+
 
         applyButton.setOnAction(event -> {
             selectedFilters.clear(); //reset for every choicing action again
@@ -411,13 +441,17 @@ public class HelloApplication extends Application {
 
 
 
-        root.getChildren().addAll(
-                genreLabel, genrePane,
-                yearLabel, yearPane,
-                applyButton
+        HBox applyBox = new HBox(applyButton);
+        applyBox.setAlignment(Pos.BOTTOM_RIGHT);
+        applyBox.setPadding(new Insets(10, 10, 10, 10));
+
+        Region spacer = new Region();
+        VBox.setVgrow(spacer, Priority.ALWAYS);
+
+        root.getChildren().addAll(genreLabel, genrePane, yearLabel, yearPane,spacer,applyBox
         );
 
-        Scene scene = new Scene(root, 350, 400);
+        Scene scene = new Scene(root, 400, 350);
         filterStage.setScene(scene);
         filterStage.show();
     }
