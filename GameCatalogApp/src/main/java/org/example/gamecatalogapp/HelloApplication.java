@@ -48,7 +48,16 @@ public class HelloApplication extends Application {
         mainLayOut.getChildren().add(menuBar);
 
         Label filterLabel = new Label("None");
-        Button filterButton = new Button("   Filters:  ");
+        filterLabel.setStyle("""
+            -fx-background-color: #e67e22;
+            -fx-text-fill: white;
+            -fx-padding: 4 10 4 10;
+            -fx-background-radius: 8;
+            -fx-font-size: 13;
+                    """);
+        Button filterButton = new Button("  Filters:  ");
+
+        filterButton.setStyle("-fx-background-color: black; -fx-font-size: 13; -fx-text-fill: white; -fx-background-radius: 6;");
 
         ArrayList<String> selectedFilters=new ArrayList<>();
 
@@ -96,6 +105,7 @@ public class HelloApplication extends Application {
 
 
         HBox filters=new HBox(filterButton,filterLabel);
+        VBox.setMargin(filters,new Insets(2,5,10,7));
         filters.setAlignment(Pos.CENTER_LEFT);
         filters.setSpacing(8);
         mainLayOut.getChildren().add(filters);
@@ -364,11 +374,11 @@ public class HelloApplication extends Application {
             ToggleButton btn = createSelectableButton(f);
             toggleButtonsForGenre.add(btn);
             btn.setStyle("""
-        -fx-background-color: #e67e22;
-        -fx-text-fill: white;
-        -fx-padding: 4 10 4 10;
-        -fx-background-radius: 8;
-        -fx-font-size: 13;
+            -fx-background-color: #e67e22;
+            -fx-text-fill: white;
+            -fx-padding: 4 10 4 10;
+            -fx-background-radius: 8;
+            -fx-font-size: 13;
                     """);
             genrePane.getChildren().add(btn);
         }
