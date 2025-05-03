@@ -292,14 +292,26 @@ public class HelloApplication extends Application {
 
         HBox buttonBox = new HBox();
         buttonBox.setAlignment(Pos.BOTTOM_RIGHT);
+        Button editButton = new Button("Edit Game");
         Button deleteButton = new Button("Delete Game");
+        editButton.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-background-radius: 6;");
         deleteButton.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-background-radius: 6;");
+
+
+
+
+        editButton.setOnAction(e->editGameWindow(game));
+
+
+
+
         deleteButton.setOnAction(e -> {
             catalog.deleteGame(game);
             gameTable.setItems(FXCollections.observableArrayList(catalog.getGameList()));
             detailStage.close();
         });
-        buttonBox.getChildren().addAll(deleteButton);
+        buttonBox.getChildren().addAll(editButton,deleteButton);
+        buttonBox.setSpacing(5);
         rightInfoBox.getChildren().addAll(spacer,buttonBox);
         leftInfoBox.getChildren().addAll(title,descriptionLabel,descriptionText);
 
@@ -479,6 +491,102 @@ public class HelloApplication extends Application {
     }
 
 
+    private void editGameWindow(Game game) {
+        Stage editStage = new Stage();
+        editStage.setTitle("Edit Game");
+
+        VBox edit = new VBox(10);
+        edit.setPadding(new javafx.geometry.Insets(15));
+
+        TextField titleField = new TextField(game.getTitle());
+        titleField.setPromptText("Title");
+
+        TextField developerField = new TextField(String.join(" , ",game.getDeveloper()));
+        developerField.setPromptText("Developer(s), comma separated");
+
+        TextField yearField = new TextField(String.valueOf(game.getReleaseYear()));
+        yearField.setPromptText("Release Year");
+
+        TextField genreField = new TextField(String.join(" , ",game.getGenre()));
+        genreField.setPromptText("Genre(s), comma separated");
+
+        TextField playtimeField = new TextField(String.valueOf(game.getPlayTime()));
+        playtimeField.setPromptText("Playtime (in hours)");
+
+        TextField platformField = new TextField(String.join(" , ",game.getPlatform()));
+        platformField.setPromptText("Platform(s), comma separated");
+
+        TextField imageUrlField = new TextField(game.getImage());
+        imageUrlField.setPromptText("Image URL (optional)");
+
+        Button saveEditedGame = new Button("Save edited game");
+        Label errorLabel = new Label();
+        errorLabel.setStyle("-fx-text-fill: red;");
+
+        saveEditedGame.setOnAction(e -> {
+            try {
+                String title = titleField.getText().trim();
+                ArrayList<String> developers = new ArrayList<>();
+                for (String dev : developerField.getText().trim().split(",")) {
+                    if (!dev.isBlank()) developers.add(dev.trim());
+                }
+
+                int releaseYear = Integer.parseInt(yearField.getText().trim());
+
+                ArrayList<String> genres = new ArrayList<>();
+                for (String g : genreField.getText().trim().split(",")) {
+                    if (!g.isBlank()) genres.add(g.trim());
+                }
+
+                double playtime = Double.parseDouble(playtimeField.getText().trim());
+
+                ArrayList<String> platforms = new ArrayList<>();
+                for (String p : platformField.getText().trim().split(",")) {
+                    if (!p.isBlank()) platforms.add(p.trim());
+                }
+
+                String image = imageUrlField.getText().trim();
+                if (image.isEmpty()) {
+                    image = "https://via.placeholder.com/300";
+                }
+
+                // Generate new ID
+                int maxId = catalog.getGameList().stream().mapToInt(Game::getId).max().orElse(0);
+                int newId = maxId + 1;
+
+                game.setTitle(title);
+                game.setDeveloper(developers);
+                game.setReleaseYear(releaseYear);
+                game.setGenre(genres);
+                game.setId(newId);
+                game.setPlatform(platforms);
+                game.setPlayTime(playtime);
+                game.setImage(image);
+
+                gameTable.setItems(FXCollections.observableArrayList(catalog.getGameList()));
+                editStage.close();
+            } catch (Exception ex) {
+                errorLabel.setText("Invalid input. Please check the fields.");
+                ex.printStackTrace();
+            }
+        });
+        edit.getChildren().addAll(
+                new Label("Edit the game"),
+                titleField,
+                developerField,
+                yearField,
+                genreField,
+                playtimeField,
+                platformField,
+                imageUrlField,
+                saveEditedGame,
+                errorLabel
+        );
+
+        Scene scene = new Scene(edit, 400, 450);
+        editStage.setScene(scene);
+        editStage.show();
+    }
 
 
 
