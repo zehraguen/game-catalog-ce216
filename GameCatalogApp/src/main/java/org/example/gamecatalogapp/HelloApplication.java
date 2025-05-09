@@ -27,6 +27,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         VBox mainLayOut = new VBox();
+        mainLayOut.setStyle("-fx-background-color: #2c7da0;");
 
         //-------------------------------------------------
         Menu fileMenu = new Menu("File");
@@ -44,7 +45,9 @@ public class HelloApplication extends Application {
         fileMenu.getItems().addAll(importItem, exportItem);
 
         MenuBar menuBar = new MenuBar(fileMenu, helpMenu);
-
+        menuBar.setStyle("""
+                -fx-background-color: #9cc5d6;
+                """);
         mainLayOut.getChildren().add(menuBar);
 
         Label filterLabel = new Label("None");
@@ -57,7 +60,7 @@ public class HelloApplication extends Application {
                     """);
         Button filterButton = new Button("  Filters:  ");
 
-        filterButton.setStyle("-fx-background-color: black; -fx-font-size: 13; -fx-text-fill: white; -fx-background-radius: 6;");
+        filterButton.setStyle("-fx-background-color: #665f5b; -fx-font-size: 13; -fx-text-fill: white; -fx-background-radius: 6;");
 
         ArrayList<String> selectedFilters=new ArrayList<>();
 
@@ -70,6 +73,13 @@ public class HelloApplication extends Application {
 
 
         Label sortLabel = new Label("Sorted by:");
+        sortLabel.setStyle("""
+            -fx-background-color: #665f5b;
+            -fx-font-size: 13;
+            -fx-text-fill: white;
+            -fx-padding: 4 10 4 10;
+            -fx-background-radius: 6;
+                """);
         ComboBox<String> sortBox = new ComboBox<>();
         sortBox.getItems().addAll("Alphabetical", "Release year", "Play time");
         sortBox.setValue("Alphabetical");
@@ -107,7 +117,7 @@ public class HelloApplication extends Application {
         HBox filters=new HBox(filterButton,filterLabel);
         VBox.setMargin(filters,new Insets(2,5,10,7));
         filters.setAlignment(Pos.CENTER_LEFT);
-        filters.setSpacing(8);
+        filters.setSpacing(10);
         mainLayOut.getChildren().add(filters);
 
 
@@ -157,7 +167,7 @@ public class HelloApplication extends Application {
         catalog.importJson("src/main/resources/games_data.json");
         gameTable.setItems(FXCollections.observableArrayList(catalog.getSpecificGameList()));
 
-        Scene scene = new Scene(mainLayOut, 600, 450);
+        Scene scene = new Scene(mainLayOut, 770, 600);
         stage.setTitle("Game Catalog");
         stage.setScene(scene);
         stage.show();
@@ -691,6 +701,7 @@ public class HelloApplication extends Application {
 
     private void showHelpMenu(){
         TextArea text = new TextArea();
+        text.setStyle("-fx-control-inner-background: #9cc5d6;");
         text.setText("""
                     Upload Games
                         * Go to 'File' menu and then click the 'Import' button.
@@ -700,16 +711,22 @@ public class HelloApplication extends Application {
                     Add Game
                         * Click the 'Add Game' button.
                         * Enter the attributes of the game you want to add.
-                        
-                    Delete Game
-                        * Click the 'Delete Game' button.
-                        
+                    
                     Find Games
                         * Type the full name or part of the game name in search bar and click
                            'search' button.
                         * Sort the games according to your preference.
                         * Use filters to limit the games with genre or release year.
-                        * Click the game on the list to reach more information about the game.     
+                        * Click the game on the list to reach more information about the game.
+                        
+                    Delete Game
+                        * Select the game you want to delete from list.
+                        * Click the 'Delete Game' button.
+                        
+                    Edit Game
+                        * Select the game you want to edit from the list.
+                        * Click the 'Edit Game' button.
+                        * Change the attributes accordingly.        
                                       
                     """);
         text.setEditable(false);
