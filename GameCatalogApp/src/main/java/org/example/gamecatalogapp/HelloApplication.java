@@ -574,6 +574,7 @@ public class HelloApplication extends Application {
                 game.setPlayTime(playtime);
                 game.setImage(image);
 
+                catalog.sortGames("");
                 gameTable.setItems(FXCollections.observableArrayList(catalog.getGameList()));
                 editStage.close();
             } catch (Exception ex) {
@@ -674,6 +675,7 @@ public class HelloApplication extends Application {
 
                 Game newGame = new Game(title, developers, releaseYear, genres, newId, platforms, playtime, image,false,null,null,null);
                 catalog.getGameList().add(newGame);
+                catalog.sortGames("");
                 gameTable.setItems(FXCollections.observableArrayList(catalog.getGameList()));
                 addStage.close();
             } catch (Exception ex) {

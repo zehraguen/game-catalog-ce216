@@ -140,18 +140,22 @@ public class Catalog {
     public void sortGames(String criteria) {
         switch (criteria){
             case "alphabetical":
+                gameList.sort(Game::compareNames);
                 specificGameList.sort(Game::compareNames);
                 break;
 
             case "chronological":
+                gameList.sort(Game::compareYears);
                 specificGameList.sort(Game::compareYears);
                 break;
 
             case "playtime":
+                gameList.sort(Game::comparePlayTime);
                 specificGameList.sort(Game::comparePlayTime);
                 break;
 
             default:
+                gameList.sort(Game::compareNames);
                 specificGameList.sort(Game::compareNames);
         }
     }
