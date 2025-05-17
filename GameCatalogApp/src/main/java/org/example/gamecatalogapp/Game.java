@@ -11,8 +11,46 @@ public class Game {
     private ArrayList<String> platform;
     private double playTime;
     private String image;
+    private boolean localized;
+    private String country;
 
-    public Game(String title, ArrayList<String> developer, int releaseYear, ArrayList<String> genre, int id, ArrayList<String> platform, double playTime, String image) {
+    public boolean isLocalized() {
+        return localized;
+    }
+
+    public void setLocalized(boolean localized) {
+        this.localized = localized;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getTranslators() {
+        return translators;
+    }
+
+    public void setTranslators(String translators) {
+        this.translators = translators;
+    }
+
+    public String getDubstudios() {
+        return dubberstudio;
+    }
+
+    public void setDubstudios(String dubstudios) {
+        this.dubberstudio = dubstudios;
+    }
+
+    private String translators;
+    private String dubberstudio;
+
+
+    public Game(String title, ArrayList<String> developer, int releaseYear, ArrayList<String> genre, int id, ArrayList<String> platform, double playTime, String image, boolean localized, String country, String translators, String dubstudios) {
         this.title = title;
         this.developer = developer;
         this.releaseYear = releaseYear;
@@ -21,6 +59,10 @@ public class Game {
         this.platform = platform;
         this.playTime = playTime;
         this.image = image;
+        this.localized = localized;
+        this.country = country;
+        this.translators = translators;
+        this.dubberstudio = dubstudios;
     }
 
     public ArrayList<String> getDeveloper() {
