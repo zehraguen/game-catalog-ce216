@@ -530,8 +530,9 @@ public class HelloApplication extends Application {
         imageUrlField.setPromptText("Image URL (optional)");
 
         Button saveEditedGame = new Button("Save edited game");
+        saveEditedGame.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-background-radius: 6;");
         Label errorLabel = new Label();
-        errorLabel.setStyle("-fx-text-fill: red;");
+        errorLabel.setStyle("-fx-text-fill: #bf1b1b;");
 
         saveEditedGame.setOnAction(e -> {
             try {
@@ -557,18 +558,13 @@ public class HelloApplication extends Application {
 
                 String image = imageUrlField.getText().trim();
                 if (image.isEmpty()) {
-                    image = "https://via.placeholder.com/300";
+                    image = "https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=";
                 }
-
-                // Generate new ID
-                int maxId = catalog.getGameList().stream().mapToInt(Game::getId).max().orElse(0);
-                int newId = maxId + 1;
 
                 game.setTitle(title);
                 game.setDeveloper(developers);
                 game.setReleaseYear(releaseYear);
                 game.setGenre(genres);
-                game.setId(newId);
                 game.setPlatform(platforms);
                 game.setPlayTime(playtime);
                 game.setImage(image);
@@ -581,7 +577,6 @@ public class HelloApplication extends Application {
             }
         });
         edit.getChildren().addAll(
-                new Label("Edit the game"),
                 titleField,
                 developerField,
                 yearField,
@@ -593,7 +588,9 @@ public class HelloApplication extends Application {
                 errorLabel
         );
 
-        Scene scene = new Scene(edit, 400, 450);
+        edit.setStyle("-fx-background-color: #9cc5d6;");
+
+        Scene scene = new Scene(edit, 400, 350);
         editStage.setScene(scene);
         editStage.show();
     }
@@ -635,8 +632,9 @@ public class HelloApplication extends Application {
         imageUrlField.setPromptText("Image URL (optional)");
 
         Button addButton = new Button("Add Game");
+        addButton.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-background-radius: 6;");
         Label errorLabel = new Label();
-        errorLabel.setStyle("-fx-text-fill: red;");
+        errorLabel.setStyle("-fx-text-fill: #bf1b1b;");
 
         addButton.setOnAction(e -> {
             try {
@@ -662,7 +660,7 @@ public class HelloApplication extends Application {
 
                 String image = imageUrlField.getText().trim();
                 if (image.isEmpty()) {
-                    image = "https://via.placeholder.com/300";
+                    image = "https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=";
                 }
 
                 // Generate new ID
@@ -682,7 +680,6 @@ public class HelloApplication extends Application {
 
 
         root.getChildren().addAll(
-                new Label("Add a New Game"),
                 titleField,
                 developerField,
                 yearField,
@@ -694,7 +691,9 @@ public class HelloApplication extends Application {
                 errorLabel
         );
 
-        Scene scene = new Scene(root, 400, 450);
+        root.setStyle("-fx-background-color: #9cc5d6;");
+
+        Scene scene = new Scene(root, 400, 350);
         addStage.setScene(scene);
         addStage.show();
     }
