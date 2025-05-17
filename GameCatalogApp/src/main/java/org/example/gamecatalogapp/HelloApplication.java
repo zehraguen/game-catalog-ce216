@@ -281,7 +281,7 @@ public class HelloApplication extends Application {
         infoBoxes.setPadding(new Insets(5, 5, 5, 10));
 
 
-        infoBoxes.getChildren().addAll(leftInfoBox, rightInfoBox);
+        infoBoxes.getChildren().addAll(rightInfoBox, leftInfoBox);
 
 
 
@@ -291,7 +291,12 @@ public class HelloApplication extends Application {
         Label playtime = createLabel(" Playtime: " + game.getPlayTime() + " hrs", 14, false);
 
         // EXplainin Area???
-        Label descriptionLabel = createLabel("Description:", 14, true);
+        boolean loc= game.isLocalized();
+        String isloc="";
+        if(loc) isloc="Localized";
+        else isloc="Not Localized";
+
+        Label descriptionLabel = createLabel(isloc, 14, true);
         Label descriptionText = createLabel("DESCRIPTION", 13, false);
         descriptionText.setWrapText(true);
 
@@ -389,7 +394,7 @@ public class HelloApplication extends Application {
         genrePane.setVgap(10);
         genrePane.setPrefWrapLength(280);
 
-        String[] filters={"Simulation", "Strategy", "Sports", "RPG", "Racing", "Puzzle", "Indie"," Casual", "Adventure","Action"};
+        String[] filters={"Simulation", "Strategy", "Sports", "RPG", "Racing", "Puzzle", "Indie"," Casual", "Adventure","Action","Localized"};
 
 
         for (String f : filters) {
@@ -667,7 +672,7 @@ public class HelloApplication extends Application {
                 int maxId = catalog.getGameList().stream().mapToInt(Game::getId).max().orElse(0);
                 int newId = maxId + 1;
 
-                Game newGame = new Game(title, developers, releaseYear, genres, newId, platforms, playtime, image);
+                Game newGame = new Game(title, developers, releaseYear, genres, newId, platforms, playtime, image,false,null,null,null);
                 catalog.getGameList().add(newGame);
                 gameTable.setItems(FXCollections.observableArrayList(catalog.getGameList()));
                 addStage.close();
