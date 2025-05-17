@@ -164,7 +164,8 @@ public class HelloApplication extends Application {
         VBox.setMargin(end, new javafx.geometry.Insets(8));
         mainLayOut.getChildren().add(end);
 
-        catalog.importJson("src/main/resources/games_data.json");
+        catalog.importJson("src/main/resources/games_export_final1.json");
+
         gameTable.setItems(FXCollections.observableArrayList(catalog.getSpecificGameList()));
 
         Scene scene = new Scene(mainLayOut, 770, 600);
@@ -214,7 +215,7 @@ public class HelloApplication extends Application {
         root.setStyle("-fx-background-color: #2c7da0;");
 
         ImageView imageView = new ImageView(new Image(game.getImage(), true));
-        imageView.setFitWidth(500);
+        imageView.setFitWidth(850);
         imageView.setPreserveRatio(true);
         imageView.setSmooth(true);
         imageView.setStyle("""
@@ -297,6 +298,13 @@ public class HelloApplication extends Application {
         else isloc="Not Localized";
 
         Label descriptionLabel = createLabel(isloc, 14, true);
+
+        Label translator=createLabel(("Translator: " +game.getTranslators()), 14,false);
+
+        Label studio=createLabel(("Dubber Studio: "+game.getDubstudios()),14,false);
+
+        Label country=createLabel(("Country: "+game.getCountry()),14,false);
+
         Label descriptionText = createLabel("DESCRIPTION", 13, false);
         descriptionText.setWrapText(true);
 
@@ -328,7 +336,8 @@ public class HelloApplication extends Application {
         buttonBox.getChildren().addAll(editButton,deleteButton);
         buttonBox.setSpacing(5);
         rightInfoBox.getChildren().addAll(spacer,buttonBox);
-        leftInfoBox.getChildren().addAll(title,descriptionLabel,descriptionText);
+        if(loc) leftInfoBox.getChildren().addAll(title,descriptionLabel,country,translator,studio);
+        else leftInfoBox.getChildren().addAll(title,descriptionLabel);
 
         VBox.setMargin(theBox, new Insets(0, 0, 0, 10));
         VBox.setMargin(infoBoxes,new Insets(0,0,0,0));
@@ -337,7 +346,7 @@ public class HelloApplication extends Application {
 
 
 
-        Scene scene = new Scene(root, 500, 600);
+        Scene scene = new Scene(root, 850, 800);
         detailStage.setScene(scene);
         detailStage.show();
     }
@@ -394,7 +403,7 @@ public class HelloApplication extends Application {
         genrePane.setVgap(10);
         genrePane.setPrefWrapLength(280);
 
-        String[] filters={"Simulation", "Strategy", "Sports", "RPG", "Racing", "Puzzle", "Indie"," Casual", "Adventure","Action","Localized"};
+        String[] filters={"Simulation", "Strategy", "Sports", "RPG", "Racing", "Puzzle", "Indie"," Casual", "Adventure","Action"};
 
 
         for (String f : filters) {
@@ -434,6 +443,26 @@ public class HelloApplication extends Application {
         }
 
 
+        Label locLabel=new Label("OTHER");
+        locLabel.setStyle("""
+         -fx-font-size: 16px;
+         -fx-font-weight: bold;
+         -fx-underline: true;
+         -fx-text-fill: #37474F;
+         """);
+
+
+        String loc="Localized";
+        ToggleButton btn = createSelectableButton(loc);
+        btn.setStyle("""
+        -fx-background-color: #e67e22;
+        -fx-text-fill: white;
+        -fx-padding: 4 10 4 10;
+        -fx-background-radius: 8;
+        -fx-font-size: 13;
+                    """);
+
+
 
 
 
@@ -469,6 +498,7 @@ public class HelloApplication extends Application {
                 l.setText("None");
             }
 
+
             catalog.listSpecificGames(l.getText());
             gameTable.setItems(FXCollections.observableArrayList(catalog.getSpecificGameList()));
 
@@ -485,7 +515,7 @@ public class HelloApplication extends Application {
         Region spacer = new Region();
         VBox.setVgrow(spacer, Priority.ALWAYS);
 
-        root.getChildren().addAll(genreLabel, genrePane, yearLabel, yearPane,spacer,applyBox
+        root.getChildren().addAll(genreLabel, genrePane, yearLabel, yearPane,locLabel,btn, spacer,applyBox
         );
 
         Scene scene = new Scene(root, 400, 350);
