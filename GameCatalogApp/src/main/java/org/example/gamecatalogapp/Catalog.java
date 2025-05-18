@@ -181,6 +181,7 @@ public class Catalog {
 
         ArrayList<String> selectedGenres = new ArrayList<>();
         ArrayList<String> selectedYearRanges = new ArrayList<>();
+        boolean localized = false;
 
         boolean genreSection = true;
         for (String filter : filters) {
@@ -189,6 +190,10 @@ public class Catalog {
                 genreSection = false;
             } else if (genreSection) {
                 selectedGenres.add(filter);
+            } else if (filter.equals("Localized")) {
+                localized = true;
+            } else if (filter.equals("///")) {
+
             } else {
                 selectedYearRanges.add(filter);
             }
@@ -214,6 +219,12 @@ public class Catalog {
                         yearMatches = true;
                         break;
                     }
+                }
+            }
+
+            if(localized){
+                if (!game.isLocalized()) {
+                    continue;
                 }
             }
 

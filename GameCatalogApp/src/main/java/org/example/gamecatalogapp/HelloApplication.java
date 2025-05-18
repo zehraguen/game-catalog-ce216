@@ -469,8 +469,8 @@ public class HelloApplication extends Application {
 
 
         String loc="Localized";
-        ToggleButton btn = createSelectableButton(loc);
-        btn.setStyle("""
+        ToggleButton locBtn = createSelectableButton(loc);
+        locBtn.setStyle("""
         -fx-background-color: #e67e22;
         -fx-text-fill: white;
         -fx-padding: 4 10 4 10;
@@ -503,7 +503,13 @@ public class HelloApplication extends Application {
                     selectedFilters.add(b.getText());// without check mark
                 }
             }
-            
+
+            selectedFilters.add(" /// ");
+
+            if(locBtn.isSelected()){
+                selectedFilters.add(locBtn.getText());
+            }
+
             String s=new String();
             for (String s1 : selectedFilters){
                 s+=" "+s1;
@@ -531,7 +537,7 @@ public class HelloApplication extends Application {
         Region spacer = new Region();
         VBox.setVgrow(spacer, Priority.ALWAYS);
 
-        root.getChildren().addAll(genreLabel, genrePane, yearLabel, yearPane,locLabel,btn, spacer,applyBox
+        root.getChildren().addAll(genreLabel, genrePane, yearLabel, yearPane,locLabel,locBtn, spacer,applyBox
         );
 
         Scene scene = new Scene(root, 400, 350);
