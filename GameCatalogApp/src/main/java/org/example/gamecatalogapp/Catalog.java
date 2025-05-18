@@ -44,26 +44,49 @@ public class Catalog {
 
     public void importJson(String filePath) {
         gameList = new ArrayList<>();
+        specificGameList = new ArrayList<>();
+
+        Set<Integer> seenIds = new HashSet<>();  // to track already added IDs
+
         try {
             String content = new String(java.nio.file.Files.readAllBytes(Paths.get(filePath)));
             JSONArray jsonArray = new JSONArray(content);
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject obj = jsonArray.getJSONObject(i);
+                int id = obj.getInt("id");
+
+                if (seenIds.contains(id)) {
+                    continue; // skip duplicate
+                }
+                seenIds.add(id); // mark this ID as seen
+
                 String title = obj.getString("title");
                 ArrayList<String> developer = jsonArrayToList(obj.getJSONArray("developer"));
                 int releaseYear = obj.getInt("releaseYear");
                 ArrayList<String> genre = jsonArrayToList(obj.getJSONArray("genre"));
-                int id = obj.getInt("id");
                 ArrayList<String> platform = jsonArrayToList(obj.getJSONArray("platform"));
                 double playTime = obj.getDouble("playTime");
                 String image = obj.getString("image");
+                boolean localized=obj.getBoolean("localized");
+                String country=obj.getString("country");
+                String translators=obj.getString("translators");
+                String dubertudio=obj.getString("duberstudio");
 
-                Game game = new Game(title, developer, releaseYear, genre, id, platform, playTime, image);
+                boolean isloc=false;
+                //if(localized.equalsIgnoreCase("true")) isloc=true;
+
+
+
+
+                Game game = new Game(title, developer, releaseYear, genre, id, platform, playTime, image, localized,country,translators,dubertudio);
+
                 gameList.add(game);
                 specificGameList.add(game);
-                this.sortGames("alphabetical");
             }
+
+            this.sortGames("alphabetical");
+
         } catch (Exception e) {
             System.out.println("Error reading JSON file: " + e.getMessage());
         }
@@ -92,6 +115,10 @@ public class Catalog {
             obj.put("platform", game.getPlatform());
             obj.put("playTime", game.getPlayTime());
             obj.put("image", game.getImage());
+            obj.put("localized", game.isLocalized());
+            obj.put("country", game.getCountry());
+            obj.put("translators", game.getTranslators());
+            obj.put("duberstudio", game.getDubstudios());
 
             jsonArray.put(obj);
         }
@@ -117,18 +144,22 @@ public class Catalog {
     public void sortGames(String criteria) {
         switch (criteria){
             case "alphabetical":
+                gameList.sort(Game::compareNames);
                 specificGameList.sort(Game::compareNames);
                 break;
 
             case "chronological":
+                gameList.sort(Game::compareYears);
                 specificGameList.sort(Game::compareYears);
                 break;
 
             case "playtime":
+                gameList.sort(Game::comparePlayTime);
                 specificGameList.sort(Game::comparePlayTime);
                 break;
 
             default:
+                gameList.sort(Game::compareNames);
                 specificGameList.sort(Game::compareNames);
         }
     }
@@ -150,6 +181,7 @@ public class Catalog {
 
         ArrayList<String> selectedGenres = new ArrayList<>();
         ArrayList<String> selectedYearRanges = new ArrayList<>();
+        boolean localized = false;
 
         boolean genreSection = true;
         for (String filter : filters) {
@@ -158,6 +190,10 @@ public class Catalog {
                 genreSection = false;
             } else if (genreSection) {
                 selectedGenres.add(filter);
+            } else if (filter.equals("Localized")) {
+                localized = true;
+            } else if (filter.equals("///")) {
+
             } else {
                 selectedYearRanges.add(filter);
             }
@@ -183,6 +219,12 @@ public class Catalog {
                         yearMatches = true;
                         break;
                     }
+                }
+            }
+
+            if(localized){
+                if (!game.isLocalized()) {
+                    continue;
                 }
             }
 

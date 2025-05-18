@@ -164,7 +164,8 @@ public class HelloApplication extends Application {
         VBox.setMargin(end, new javafx.geometry.Insets(8));
         mainLayOut.getChildren().add(end);
 
-        catalog.importJson("src/main/resources/games_data.json");
+        catalog.importJson("src/main/resources/games_export_final1.json");
+
         gameTable.setItems(FXCollections.observableArrayList(catalog.getSpecificGameList()));
 
         Scene scene = new Scene(mainLayOut, 770, 600);
@@ -213,13 +214,28 @@ public class HelloApplication extends Application {
         root.setAlignment(Pos.TOP_CENTER);
         root.setStyle("-fx-background-color: #2c7da0;");
 
-        ImageView imageView = new ImageView(new Image(game.getImage(), true));
-        imageView.setFitWidth(500);
+        // Remote image URL (from game object)
+        String imageUrl = game.getImage();
+        Image remoteImage = new Image(imageUrl, true); // Asynchronous loading
+
+        // Local fallback placeholder from resources (works in JAR too)
+        Image placeholderImage = new Image("file:src/main/resources/default.jpg");
+
+        // Set up ImageView with placeholder first
+        ImageView imageView = new ImageView(placeholderImage);
+        imageView.setFitWidth(850);
         imageView.setPreserveRatio(true);
         imageView.setSmooth(true);
         imageView.setStyle("""
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0, 3);
-""");
+             -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0, 3);
+        """);
+
+        // Replace with remote image if it loads successfully
+        remoteImage.progressProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.doubleValue() == 1.0 && !remoteImage.isError()) {
+                imageView.setImage(remoteImage);
+            }
+        });
 
 // infoBox
         VBox rightInfoBox = new VBox(8);
@@ -281,7 +297,7 @@ public class HelloApplication extends Application {
         infoBoxes.setPadding(new Insets(5, 5, 5, 10));
 
 
-        infoBoxes.getChildren().addAll(leftInfoBox, rightInfoBox);
+        infoBoxes.getChildren().addAll(rightInfoBox, leftInfoBox);
 
 
 
@@ -291,7 +307,19 @@ public class HelloApplication extends Application {
         Label playtime = createLabel(" Playtime: " + game.getPlayTime() + " hrs", 14, false);
 
         // EXplainin Area???
-        Label descriptionLabel = createLabel("Description:", 14, true);
+        boolean loc= game.isLocalized();
+        String isloc="";
+        if(loc) isloc="Localized";
+        else isloc="Original version";
+
+        Label descriptionLabel = createLabel(isloc, 14, true);
+
+        Label translator=createLabel(("Translator: " +game.getTranslators()), 14,false);
+
+        Label studio=createLabel(("Dubber Studio: "+game.getDubstudios()),14,false);
+
+        Label country=createLabel(("Country: "+game.getCountry()),14,false);
+
         Label descriptionText = createLabel("DESCRIPTION", 13, false);
         descriptionText.setWrapText(true);
 
@@ -317,13 +345,15 @@ public class HelloApplication extends Application {
 
         deleteButton.setOnAction(e -> {
             catalog.deleteGame(game);
+            catalog.exportJson("src/main/resources/games_data.json");
             gameTable.setItems(FXCollections.observableArrayList(catalog.getGameList()));
             detailStage.close();
         });
         buttonBox.getChildren().addAll(editButton,deleteButton);
         buttonBox.setSpacing(5);
         rightInfoBox.getChildren().addAll(spacer,buttonBox);
-        leftInfoBox.getChildren().addAll(title,descriptionLabel,descriptionText);
+        if(loc) leftInfoBox.getChildren().addAll(title,descriptionLabel,country,translator,studio);
+        else leftInfoBox.getChildren().addAll(title,descriptionLabel);
 
         VBox.setMargin(theBox, new Insets(0, 0, 0, 10));
         VBox.setMargin(infoBoxes,new Insets(0,0,0,0));
@@ -332,7 +362,7 @@ public class HelloApplication extends Application {
 
 
 
-        Scene scene = new Scene(root, 500, 600);
+        Scene scene = new Scene(root, 850, 800);
         detailStage.setScene(scene);
         detailStage.show();
     }
@@ -429,6 +459,26 @@ public class HelloApplication extends Application {
         }
 
 
+        Label locLabel=new Label("OTHER");
+        locLabel.setStyle("""
+         -fx-font-size: 16px;
+         -fx-font-weight: bold;
+         -fx-underline: true;
+         -fx-text-fill: #37474F;
+         """);
+
+
+        String loc="Localized";
+        ToggleButton locBtn = createSelectableButton(loc);
+        locBtn.setStyle("""
+        -fx-background-color: #e67e22;
+        -fx-text-fill: white;
+        -fx-padding: 4 10 4 10;
+        -fx-background-radius: 8;
+        -fx-font-size: 13;
+                    """);
+
+
 
 
 
@@ -454,6 +504,12 @@ public class HelloApplication extends Application {
                 }
             }
 
+            selectedFilters.add(" /// ");
+
+            if(locBtn.isSelected()){
+                selectedFilters.add(locBtn.getText());
+            }
+
             String s=new String();
             for (String s1 : selectedFilters){
                 s+=" "+s1;
@@ -463,6 +519,7 @@ public class HelloApplication extends Application {
             if(s.isBlank()){
                 l.setText("None");
             }
+
 
             catalog.listSpecificGames(l.getText());
             gameTable.setItems(FXCollections.observableArrayList(catalog.getSpecificGameList()));
@@ -480,7 +537,7 @@ public class HelloApplication extends Application {
         Region spacer = new Region();
         VBox.setVgrow(spacer, Priority.ALWAYS);
 
-        root.getChildren().addAll(genreLabel, genrePane, yearLabel, yearPane,spacer,applyBox
+        root.getChildren().addAll(genreLabel, genrePane, yearLabel, yearPane,locLabel,locBtn, spacer,applyBox
         );
 
         Scene scene = new Scene(root, 400, 350);
@@ -530,8 +587,9 @@ public class HelloApplication extends Application {
         imageUrlField.setPromptText("Image URL (optional)");
 
         Button saveEditedGame = new Button("Save edited game");
+        saveEditedGame.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-background-radius: 6;");
         Label errorLabel = new Label();
-        errorLabel.setStyle("-fx-text-fill: red;");
+        errorLabel.setStyle("-fx-text-fill: #bf1b1b;");
 
         saveEditedGame.setOnAction(e -> {
             try {
@@ -557,22 +615,19 @@ public class HelloApplication extends Application {
 
                 String image = imageUrlField.getText().trim();
                 if (image.isEmpty()) {
-                    image = "https://via.placeholder.com/300";
+                    image = "https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=";
                 }
-
-                // Generate new ID
-                int maxId = catalog.getGameList().stream().mapToInt(Game::getId).max().orElse(0);
-                int newId = maxId + 1;
 
                 game.setTitle(title);
                 game.setDeveloper(developers);
                 game.setReleaseYear(releaseYear);
                 game.setGenre(genres);
-                game.setId(newId);
                 game.setPlatform(platforms);
                 game.setPlayTime(playtime);
                 game.setImage(image);
 
+                catalog.sortGames("");
+                catalog.exportJson("src/main/resources/games_data.json");
                 gameTable.setItems(FXCollections.observableArrayList(catalog.getGameList()));
                 editStage.close();
             } catch (Exception ex) {
@@ -581,7 +636,6 @@ public class HelloApplication extends Application {
             }
         });
         edit.getChildren().addAll(
-                new Label("Edit the game"),
                 titleField,
                 developerField,
                 yearField,
@@ -593,7 +647,9 @@ public class HelloApplication extends Application {
                 errorLabel
         );
 
-        Scene scene = new Scene(edit, 400, 450);
+        edit.setStyle("-fx-background-color: #9cc5d6;");
+
+        Scene scene = new Scene(edit, 400, 350);
         editStage.setScene(scene);
         editStage.show();
     }
@@ -635,8 +691,9 @@ public class HelloApplication extends Application {
         imageUrlField.setPromptText("Image URL (optional)");
 
         Button addButton = new Button("Add Game");
+        addButton.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-background-radius: 6;");
         Label errorLabel = new Label();
-        errorLabel.setStyle("-fx-text-fill: red;");
+        errorLabel.setStyle("-fx-text-fill: #bf1b1b;");
 
         addButton.setOnAction(e -> {
             try {
@@ -662,15 +719,17 @@ public class HelloApplication extends Application {
 
                 String image = imageUrlField.getText().trim();
                 if (image.isEmpty()) {
-                    image = "https://via.placeholder.com/300";
+                    image = "https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=";
                 }
 
                 // Generate new ID
                 int maxId = catalog.getGameList().stream().mapToInt(Game::getId).max().orElse(0);
                 int newId = maxId + 1;
 
-                Game newGame = new Game(title, developers, releaseYear, genres, newId, platforms, playtime, image);
+                Game newGame = new Game(title, developers, releaseYear, genres, newId, platforms, playtime, image,false,null,null,null);
                 catalog.getGameList().add(newGame);
+                catalog.exportJson("src/main/resources/games_data.json");
+                catalog.sortGames("");
                 gameTable.setItems(FXCollections.observableArrayList(catalog.getGameList()));
                 addStage.close();
             } catch (Exception ex) {
@@ -682,7 +741,6 @@ public class HelloApplication extends Application {
 
 
         root.getChildren().addAll(
-                new Label("Add a New Game"),
                 titleField,
                 developerField,
                 yearField,
@@ -694,7 +752,9 @@ public class HelloApplication extends Application {
                 errorLabel
         );
 
-        Scene scene = new Scene(root, 400, 450);
+        root.setStyle("-fx-background-color: #9cc5d6;");
+
+        Scene scene = new Scene(root, 400, 350);
         addStage.setScene(scene);
         addStage.show();
     }
