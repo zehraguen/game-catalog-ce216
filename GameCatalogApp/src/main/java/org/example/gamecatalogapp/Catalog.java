@@ -16,7 +16,6 @@ public class Catalog {
     public ArrayList<Game> getGameList() {
         return gameList;
     }
-
     public ArrayList<Game> getSpecificGameList(){return specificGameList;}
 
     // Methods (empty for now)
@@ -45,6 +44,10 @@ public class Catalog {
 
     public void importJson(String filePath) {
         gameList = new ArrayList<>();
+        specificGameList = new ArrayList<>();
+
+        Set<Integer> seenIds = new HashSet<>();  // to track already added IDs
+
         try {
             String content = new String(java.nio.file.Files.readAllBytes(Paths.get(filePath)));
             JSONArray jsonArray = new JSONArray(content);
@@ -53,11 +56,10 @@ public class Catalog {
                 JSONObject obj = jsonArray.getJSONObject(i);
                 int id = obj.getInt("id");
 
-                for(int j = 0; j < gameList.size(); j++){
-                    if(gameList.get(j).getId() == id){
-                        return;
-                    }
+                if (seenIds.contains(id)) {
+                    continue; // skip duplicate
                 }
+                seenIds.add(id); // mark this ID as seen
 
                 String title = obj.getString("title");
                 ArrayList<String> developer = jsonArrayToList(obj.getJSONArray("developer"));
@@ -66,13 +68,25 @@ public class Catalog {
                 ArrayList<String> platform = jsonArrayToList(obj.getJSONArray("platform"));
                 double playTime = obj.getDouble("playTime");
                 String image = obj.getString("image");
+                boolean localized=obj.getBoolean("localized");
+                String country=obj.getString("country");
+                String translators=obj.getString("translators");
+                String dubertudio=obj.getString("duberstudio");
 
-                Game game = new Game(title, developer, releaseYear, genre, id, platform, playTime, image);
+                boolean isloc=false;
+                //if(localized.equalsIgnoreCase("true")) isloc=true;
+
+
+
+
+                Game game = new Game(title, developer, releaseYear, genre, id, platform, playTime, image, localized,country,translators,dubertudio);
 
                 gameList.add(game);
                 specificGameList.add(game);
-                this.sortGames("alphabetical");
             }
+
+            this.sortGames("alphabetical");
+
         } catch (Exception e) {
             System.out.println("Error reading JSON file: " + e.getMessage());
         }
@@ -126,18 +140,22 @@ public class Catalog {
     public void sortGames(String criteria) {
         switch (criteria){
             case "alphabetical":
+                gameList.sort(Game::compareNames);
                 specificGameList.sort(Game::compareNames);
                 break;
 
             case "chronological":
+                gameList.sort(Game::compareYears);
                 specificGameList.sort(Game::compareYears);
                 break;
 
             case "playtime":
+                gameList.sort(Game::comparePlayTime);
                 specificGameList.sort(Game::comparePlayTime);
                 break;
 
             default:
+                gameList.sort(Game::compareNames);
                 specificGameList.sort(Game::compareNames);
         }
     }
