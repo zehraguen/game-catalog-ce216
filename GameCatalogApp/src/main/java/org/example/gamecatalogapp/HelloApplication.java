@@ -345,6 +345,7 @@ public class HelloApplication extends Application {
 
         deleteButton.setOnAction(e -> {
             catalog.deleteGame(game);
+            catalog.exportJson("src/main/resources/games_data.json");
             gameTable.setItems(FXCollections.observableArrayList(catalog.getGameList()));
             detailStage.close();
         });
@@ -502,7 +503,7 @@ public class HelloApplication extends Application {
                     selectedFilters.add(b.getText());// without check mark
                 }
             }
-
+            
             String s=new String();
             for (String s1 : selectedFilters){
                 s+=" "+s1;
@@ -620,6 +621,7 @@ public class HelloApplication extends Application {
                 game.setImage(image);
 
                 catalog.sortGames("");
+                catalog.exportJson("src/main/resources/games_data.json");
                 gameTable.setItems(FXCollections.observableArrayList(catalog.getGameList()));
                 editStage.close();
             } catch (Exception ex) {
@@ -720,6 +722,7 @@ public class HelloApplication extends Application {
 
                 Game newGame = new Game(title, developers, releaseYear, genres, newId, platforms, playtime, image,false,null,null,null);
                 catalog.getGameList().add(newGame);
+                catalog.exportJson("src/main/resources/games_data.json");
                 catalog.sortGames("");
                 gameTable.setItems(FXCollections.observableArrayList(catalog.getGameList()));
                 addStage.close();
