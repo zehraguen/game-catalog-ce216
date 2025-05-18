@@ -57,6 +57,12 @@ public class Game {
         this.genre = genre;
         this.id = id;
         this.platform = platform;
+        if(playTime>100){
+            playTime=playTime%100;
+            if(playTime<10) playTime=playTime+12;
+        }
+
+
         this.playTime = playTime;
         this.image = image;
         this.localized = localized;

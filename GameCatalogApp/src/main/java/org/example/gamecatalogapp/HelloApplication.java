@@ -310,7 +310,7 @@ public class HelloApplication extends Application {
         boolean loc= game.isLocalized();
         String isloc="";
         if(loc) isloc="Localized";
-        else isloc="Not Localized";
+        else isloc="Original version";
 
         Label descriptionLabel = createLabel(isloc, 14, true);
 
