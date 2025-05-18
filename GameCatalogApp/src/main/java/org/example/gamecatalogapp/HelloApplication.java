@@ -214,13 +214,28 @@ public class HelloApplication extends Application {
         root.setAlignment(Pos.TOP_CENTER);
         root.setStyle("-fx-background-color: #2c7da0;");
 
-        ImageView imageView = new ImageView(new Image(game.getImage(), true));
+        // Remote image URL (from game object)
+        String imageUrl = game.getImage();
+        Image remoteImage = new Image(imageUrl, true); // Asynchronous loading
+
+        // Local fallback placeholder from resources (works in JAR too)
+        Image placeholderImage = new Image("file:src/main/resources/default.jpg");
+
+        // Set up ImageView with placeholder first
+        ImageView imageView = new ImageView(placeholderImage);
         imageView.setFitWidth(850);
         imageView.setPreserveRatio(true);
         imageView.setSmooth(true);
         imageView.setStyle("""
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0, 3);
-""");
+             -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0, 3);
+        """);
+
+        // Replace with remote image if it loads successfully
+        remoteImage.progressProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.doubleValue() == 1.0 && !remoteImage.isError()) {
+                imageView.setImage(remoteImage);
+            }
+        });
 
 // infoBox
         VBox rightInfoBox = new VBox(8);
