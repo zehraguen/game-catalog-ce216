@@ -115,6 +115,10 @@ public class Catalog {
             obj.put("platform", game.getPlatform());
             obj.put("playTime", game.getPlayTime());
             obj.put("image", game.getImage());
+            obj.put("localized", game.isLocalized());
+            obj.put("country", game.getCountry());
+            obj.put("translators", game.getTranslators());
+            obj.put("duberstudio", game.getDubstudios());
 
             jsonArray.put(obj);
         }
