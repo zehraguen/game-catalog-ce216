@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8fda1c4c-7e7b-42f1-b9c2-116d06ee7dcc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameCatalogApp/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/GameCatalogApp/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameCatalogApp/out/artifacts/GameCatalogApp_jar/GameCatalogApp.jar" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,15 +58,28 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/bulbu/IdeaProjects/game-catalog-ce216/GameCatalogApp",
+    "last_opened_file_path": "/Users/zehragun/Desktop/game-catalog-ce216",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "settings.sync",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="game-catalog-ce216" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="game-catalog-ce216" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -84,6 +97,8 @@
       <option name="presentableId" value="Default" />
       <updated>1745287079562</updated>
       <workItem from="1745313314274" duration="109000" />
+      <workItem from="1746178571464" duration="127000" />
+      <workItem from="1746782521957" duration="80000" />
     </task>
     <servers />
   </component>

@@ -16,6 +16,7 @@ public class Catalog {
     public ArrayList<Game> getGameList() {
         return gameList;
     }
+
     public ArrayList<Game> getSpecificGameList(){return specificGameList;}
 
     // Methods (empty for now)
@@ -50,16 +51,24 @@ public class Catalog {
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject obj = jsonArray.getJSONObject(i);
+                int id = obj.getInt("id");
+
+                for(int j = 0; j < gameList.size(); j++){
+                    if(gameList.get(j).getId() == id){
+                        return;
+                    }
+                }
+
                 String title = obj.getString("title");
                 ArrayList<String> developer = jsonArrayToList(obj.getJSONArray("developer"));
                 int releaseYear = obj.getInt("releaseYear");
                 ArrayList<String> genre = jsonArrayToList(obj.getJSONArray("genre"));
-                int id = obj.getInt("id");
                 ArrayList<String> platform = jsonArrayToList(obj.getJSONArray("platform"));
                 double playTime = obj.getDouble("playTime");
                 String image = obj.getString("image");
 
                 Game game = new Game(title, developer, releaseYear, genre, id, platform, playTime, image);
+
                 gameList.add(game);
                 specificGameList.add(game);
                 this.sortGames("alphabetical");
