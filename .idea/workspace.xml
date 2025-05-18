@@ -5,10 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8fda1c4c-7e7b-42f1-b9c2-116d06ee7dcc" name="Changes" comment="">
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-=======
->>>>>>> fc5d8de7b2497d3f08402cd6ca2af3d274f1e310
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GameCatalogApp/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/GameCatalogApp/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GameCatalogApp/out/artifacts/GameCatalogApp_jar/GameCatalogApp.jar" beforeDir="false" />
@@ -56,61 +52,22 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Maven.Unnamed.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-<<<<<<< HEAD
-    "last_opened_file_path": "C:/Users/atake/OneDrive/Masaüstü/Akademi/Java/SE 116 Project/game-catalog-ce216",
-=======
     "last_opened_file_path": "/Users/zehragun/Desktop/game-catalog-ce216",
->>>>>>> fc5d8de7b2497d3f08402cd6ca2af3d274f1e310
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDKs",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-<<<<<<< HEAD
-    "settings.editor.selected.configurable": "configurable.group.appearance",
-=======
     "settings.editor.selected.configurable": "settings.sync",
->>>>>>> fc5d8de7b2497d3f08402cd6ca2af3d274f1e310
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager">
-<<<<<<< HEAD
-    <configuration name="Unnamed" type="MavenRunConfiguration" factoryName="Maven">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="cmdOptions" />
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list />
-            </option>
-            <option name="multimoduleDir" />
-            <option name="pomFileName" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="projectsCmdOptionValues">
-              <list />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
-    </configuration>
-=======
     <configuration default="true" type="JetRunConfigurationType">
       <module name="game-catalog-ce216" />
       <method v="2">
@@ -130,7 +87,6 @@
         <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
       </set>
     </attachedChunks>
->>>>>>> fc5d8de7b2497d3f08402cd6ca2af3d274f1e310
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -148,16 +104,5 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>
